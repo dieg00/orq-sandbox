@@ -1,3 +1,47 @@
+# orq-sandbox
+
+Repo de testeo del orquestador (La Comparsa). App mínima de notas para ejercitar el ciclo completo: plan, ejecución, gates, revisión, PR, migraciones y merge.
+
+## Stack
+
+- Next.js 16 (App Router, `src/`), React 19, TypeScript estricto, Tailwind CSS 4.
+- pnpm como gestor de paquetes. No uses npm ni yarn.
+- Vitest + Testing Library (jsdom) para tests.
+- Supabase local para la base de datos. Las migraciones viven en `supabase/migrations/`.
+
+## Comandos
+
+| Comando | Qué hace |
+| --- | --- |
+| `pnpm dev` | Servidor de desarrollo (usa el puerto de `PORT` si está definido) |
+| `pnpm typecheck` | Genera los tipos de rutas y ejecuta `tsc --noEmit` |
+| `pnpm lint` | ESLint |
+| `pnpm test` | Vitest una vez |
+| `pnpm build` | Build de producción |
+
+Los cuatro gates son `typecheck`, `lint`, `test` y `build`, en ese orden. Una tarea no está terminada hasta que pasan los cuatro.
+
+## Estructura
+
+- `src/app/`: rutas. Cada página nueva lleva su test junto a ella (`page.test.tsx`).
+- `src/components/`: componentes compartidos. `Cabecera.tsx` contiene la navegación: una página nueva que deba aparecer en el menú se añade a su lista `enlaces`.
+- `src/lib/`: lógica sin React, con tests unitarios (`*.test.ts`).
+- `supabase/migrations/`: migraciones SQL. `supabase/seed.sql`: datos de ejemplo.
+
+## Convenciones
+
+- Código, nombres y textos de la interfaz en español.
+- Componentes como funciones con export nombrado; las páginas usan `export default`.
+- Nada de fuentes ni recursos remotos en build (`next/font/google` incluido): el build debe funcionar sin red.
+- Crear una migración nueva: `supabase migration new <nombre>`. Nunca edites una migración ya mergeada.
+
+## Límites para agentes
+
+- No hagas `git push`, no abras PRs ni hagas merge: eso lo hace el orquestrador.
+- Nunca ejecutes `supabase db push`, `supabase link`, `vercel` ni nada que toque servicios remotos. Si hace falta, decláralo como acción de usuario.
+- Solo existe `.env.local` con valores de desarrollo. No crees ni pidas claves de producción.
+- `.agentes/` es de trabajo local del orquestrador y no se commitea.
+
 <!-- BEGIN:nextjs-agent-rules -->
 
 # This is NOT the Next.js you know

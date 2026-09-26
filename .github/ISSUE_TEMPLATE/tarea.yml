@@ -1,0 +1,48 @@
+name: Tarea
+description: Tarea para el orquestador
+labels: []
+body:
+  - type: input
+    id: que
+    attributes:
+      label: Qué
+      description: Una línea
+    validations:
+      required: true
+  - type: textarea
+    id: criterios
+    attributes:
+      label: Criterios de aceptación
+  - type: textarea
+    id: fuera
+    attributes:
+      label: Fuera de alcance
+  - type: textarea
+    id: pistas
+    attributes:
+      label: "Pistas (archivos, rutas, componentes)"
+  - type: dropdown
+    id: modo
+    attributes:
+      label: Modo de aprobación
+      options:
+        - Por defecto del repo
+        - plan
+        - dudas
+        - auto
+      default: 0
+  - type: input
+    id: depende
+    attributes:
+      label: Depende de
+      description: "Números de issue, p. ej. 41, 43"
+  - type: input
+    id: modelo_hacedor
+    attributes:
+      label: "Modelo del hacedor (opcional)"
+  - type: checkboxes
+    id: urgente
+    attributes:
+      label: Prioridad
+      options:
+        - label: Urgente
