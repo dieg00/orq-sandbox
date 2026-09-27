@@ -14,13 +14,28 @@ describe("resumir", () => {
 });
 
 describe("ordenarPorFecha", () => {
+  const notas: Nota[] = [
+    { id: 2, titulo: "intermedia", creadaEn: "2026-03-01T00:00:00Z", archivada: false },
+    { id: 3, titulo: "nueva", creadaEn: "2026-06-01T00:00:00Z", archivada: false },
+    { id: 1, titulo: "vieja", creadaEn: "2026-01-01T00:00:00Z", archivada: false },
+  ];
+
   it("pone primero la nota más reciente sin mutar la entrada", () => {
-    const notas: Nota[] = [
+    const notasPorDefecto: Nota[] = [
       { id: 1, titulo: "vieja", creadaEn: "2026-01-01T00:00:00Z", archivada: false },
       { id: 2, titulo: "nueva", creadaEn: "2026-06-01T00:00:00Z", archivada: false },
     ];
-    expect(ordenarPorFecha(notas).map((n) => n.id)).toEqual([2, 1]);
-    expect(notas[0]?.id).toBe(1);
+    expect(ordenarPorFecha(notasPorDefecto).map((n) => n.id)).toEqual([2, 1]);
+    expect(notasPorDefecto[0]?.id).toBe(1);
+  });
+
+  it("ordena de forma descendente cuando se pide explícitamente", () => {
+    expect(ordenarPorFecha(notas, "descendente").map((nota) => nota.id)).toEqual([3, 2, 1]);
+  });
+
+  it("ordena de forma ascendente sin mutar la entrada", () => {
+    expect(ordenarPorFecha(notas, "ascendente").map((nota) => nota.id)).toEqual([1, 2, 3]);
+    expect(notas.map((nota) => nota.id)).toEqual([2, 3, 1]);
   });
 });
 

@@ -14,7 +14,7 @@ export default function Home() {
       <main className="mx-auto max-w-2xl px-6 py-12">
         <h1 className="text-2xl font-semibold">Notas</h1>
         <ul className="mt-6 space-y-2">
-          {ordenarPorFecha(sinArchivadas(notasDeEjemplo)).map((nota) => (
+          {ordenarPorFecha(sinArchivadas(notasDeEjemplo), "ascendente").map((nota) => (
             <li key={nota.id}>{resumir(nota.titulo)}</li>
           ))}
         </ul>
