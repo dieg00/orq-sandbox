@@ -21,13 +21,14 @@ describe("página de inicio", () => {
 
   it("muestra el contador de notas sin archivar encima de la lista", () => {
     render(<Home />);
-    const contador = screen.getByText("2 notas");
-    expect(
-      contador.compareDocumentPosition(screen.getByRole("list")) & Node.DOCUMENT_POSITION_FOLLOWING,
-    ).toBeTruthy();
-    expect(screen.getAllByRole("listitem").length).toBe(2);
     const lista = screen.getByRole("list");
+    const contador = screen.getByText("2 notas");
+    expect(contador).toBeDefined();
+    expect(
+      contador.compareDocumentPosition(lista) & Node.DOCUMENT_POSITION_FOLLOWING,
+    ).toBeTruthy();
     expect(lista.getAttribute("aria-describedby")).toBe(contador.id);
     expect(contador.id).toBe("contador-notas");
+    expect(within(lista).getAllByRole("listitem").length).toBe(2);
   });
 });

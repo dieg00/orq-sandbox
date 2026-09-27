@@ -73,6 +73,10 @@ describe("textoContador", () => {
     expect(textoContador(1)).toBe("1 nota");
   });
 
+  it("usa el plural a partir de dos notas", () => {
+    expect(textoContador(2)).toBe("2 notas");
+  });
+
   it("usa el plural para varias notas", () => {
     expect(textoContador(5)).toBe("5 notas");
   });
