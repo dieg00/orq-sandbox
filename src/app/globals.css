@@ -1,13 +1,24 @@
 @import "tailwindcss";
+@custom-variant dark (&:where([data-tema=oscuro], [data-tema=oscuro] *));
 
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --borde: #e4e4e7;
+  color-scheme: light;
+}
+
+[data-tema="oscuro"] {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+  --borde: #27272a;
+  color-scheme: dark;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-borde: var(--borde);
   --font-sans: ui-sans-serif, system-ui, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
 }
