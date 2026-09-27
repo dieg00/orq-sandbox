@@ -26,5 +26,8 @@ describe("página de inicio", () => {
       contador.compareDocumentPosition(screen.getByRole("list")) & Node.DOCUMENT_POSITION_FOLLOWING,
     ).toBeTruthy();
     expect(screen.getAllByRole("listitem").length).toBe(2);
+    const lista = screen.getByRole("list");
+    expect(lista.getAttribute("aria-describedby")).toBe(contador.id);
+    expect(contador.id).toBe("contador-notas");
   });
 });

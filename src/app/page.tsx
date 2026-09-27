@@ -16,8 +16,10 @@ export default function Home() {
       <Cabecera />
       <main className="mx-auto max-w-2xl px-6 py-12">
         <h1 className="text-2xl font-semibold">Notas</h1>
-        <p className="mt-2 text-sm opacity-70">{textoContador(notas.length)}</p>
-        <ul className="mt-6 space-y-2">
+        <p id="contador-notas" className="mt-2 text-sm opacity-70">
+          {textoContador(notas.length)}
+        </p>
+        <ul aria-describedby="contador-notas" className="mt-6 space-y-2">
           {notas.map((nota) => (
             <li key={nota.id} className="flex items-center justify-between gap-2">
               <span>{resumir(nota.titulo)}</span>
