@@ -11,6 +11,13 @@ export function Cabecera() {
             {enlace.texto}
           </Link>
         ))}
+        <a
+          href="https://github.com/dieg00/orq-sandbox"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          GitHub
+        </a>
       </nav>
     </header>
   );
