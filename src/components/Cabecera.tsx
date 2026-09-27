@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-const enlaces = [{ href: "/", texto: "Inicio" }];
+const enlaces = [{ href: "/", texto: "Inicio" }, { href: "/about", texto: "Acerca de" }];
 
 export function Cabecera() {
   return (

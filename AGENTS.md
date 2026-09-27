@@ -51,3 +51,10 @@ This version has breaking changes — APIs, conventions, and file structure may 
 This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
 
 <!-- END:nextjs-agent-rules -->
+
+## Aprendizajes
+
+- Los tests de páginas usan imports explícitos de `vitest` sin globals. Sin globals, Testing Library no hace `cleanup` automático: hay que usar un único `it` por archivo o llamar a `cleanup` en `afterEach`.
+- jest-dom no está instalado: las aserciones se escriben con `toBeDefined()` y `toBe()`, no con `toBeInTheDocument()`.
+- Cualquier página que incluya `<Cabecera />` repite los textos de la navegación. Las consultas del test deben ir por rol (`heading`, `link`) y no por `getByText`, que encontraría varias coincidencias.
+- `pnpm build` (Turbopack) puede fallar dentro del sandbox del hacedor con `Operation not permitted`, porque intenta abrir un puerto al procesar `globals.css`. Es una limitación del entorno, no un fallo del código: el build hay que verificarlo fuera del sandbox.
