@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Pie } from "@/components/Pie";
+import { scriptTema } from "@/lib/tema";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -13,7 +14,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es">
+    <html lang="es" data-tema="claro" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: scriptTema }} />
+      </head>
       <body className="min-h-screen antialiased">{children}<Pie /></body>
     </html>
   );
