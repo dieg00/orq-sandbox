@@ -1,10 +1,11 @@
 import Link from "next/link";
+import { SelectorTema } from "./SelectorTema";
 
 const enlaces = [{ href: "/", texto: "Inicio" }, { href: "/about", texto: "Acerca de" }];
 
 export function Cabecera() {
   return (
-    <header className="flex items-center justify-between border-b border-zinc-200 px-6 py-4">
+    <header className="flex items-center justify-between border-b border-borde px-6 py-4">
       <Link href="/" className="font-bold">orq-sandbox</Link>
       <nav className="flex gap-4 text-sm font-medium">
         {enlaces.map((enlace) => (
@@ -20,6 +21,7 @@ export function Cabecera() {
           GitHub
         </a>
       </nav>
+      <SelectorTema />
     </header>
   );
 }
