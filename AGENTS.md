@@ -81,7 +81,6 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - Los botones que solo usan APIs del navegador van en un componente cliente propio (`"use client"`) que la página de servidor importa, como `BotonCopiar` y `SelectorTema`. La página no se convierte en cliente.
 - Para comprobar en un test que un elemento va antes que otro en el DOM, usa `a.compareDocumentPosition(b) & Node.DOCUMENT_POSITION_FOLLOWING` con `toBeTruthy()`. No hace falta jest-dom.
 - `textoContador(n)` (`src/lib/notas.ts`) devuelve «1 nota» para 1 y «N notas» en el resto, incluido «0 notas». Úsalo para cualquier texto que cuente notas, en lugar de pluralizar a mano o con `Intl`.
-- En la página de inicio, la lista visible de notas (sin archivar y ordenada) se calcula una sola vez en una variable `notas`. Todo lo que dependa de ella, como el contador o la propia lista, debe usar esa variable para que no diverjan.
 - Para textos secundarios que deben seguir al tema claro/oscuro, usa `opacity-70` sobre el color heredado en lugar de un gris fijo tipo `text-zinc-500`.
 - En la página de inicio, la lista visible de notas (sin archivar y ordenada) se calcula una sola vez en una variable `notas`, y el contador y la lista usan esa misma variable. El contador (`#contador-notas`) está enlazado al `<ul>` con `aria-describedby`.
 - `getBy*` de Testing Library ya lanza un error si no encuentra el elemento. No añadas `expect(x).toBeDefined()` justo después: es una aserción que nunca falla. Úsala solo cuando el `getBy*` no se guarda en una variable.
