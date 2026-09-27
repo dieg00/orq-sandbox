@@ -1,6 +1,6 @@
 import { Cabecera } from "@/components/Cabecera";
 import { BotonCopiar } from "@/components/BotonCopiar";
-import { ordenarPorFecha, resumir, sinArchivadas, type Nota } from "@/lib/notas";
+import { ordenarPorFecha, resumir, sinArchivadas, textoContador, type Nota } from "@/lib/notas";
 
 const notasDeEjemplo: Nota[] = [
   { id: 1, titulo: "Primera nota del sandbox", creadaEn: "2026-09-01T10:00:00Z", archivada: false },
@@ -9,13 +9,16 @@ const notasDeEjemplo: Nota[] = [
 ];
 
 export default function Home() {
+  const notas = ordenarPorFecha(sinArchivadas(notasDeEjemplo), "ascendente");
+
   return (
     <>
       <Cabecera />
       <main className="mx-auto max-w-2xl px-6 py-12">
         <h1 className="text-2xl font-semibold">Notas</h1>
+        <p className="mt-2 text-sm opacity-70">{textoContador(notas.length)}</p>
         <ul className="mt-6 space-y-2">
-          {ordenarPorFecha(sinArchivadas(notasDeEjemplo), "ascendente").map((nota) => (
+          {notas.map((nota) => (
             <li key={nota.id} className="flex items-center justify-between gap-2">
               <span>{resumir(nota.titulo)}</span>
               <BotonCopiar texto={nota.titulo} />

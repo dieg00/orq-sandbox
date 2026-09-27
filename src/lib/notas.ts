@@ -24,3 +24,7 @@ export function ordenarPorFecha(notas: readonly Nota[], orden: OrdenFecha = "des
 export function sinArchivadas(notas: readonly Nota[]): Nota[] {
   return notas.filter((nota) => !nota.archivada);
 }
+
+export function textoContador(cantidad: number): string {
+  return cantidad === 1 ? "1 nota" : `${cantidad} notas`;
+}

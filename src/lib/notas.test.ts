@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { ordenarPorFecha, resumir, sinArchivadas, type Nota } from "./notas";
+import { ordenarPorFecha, resumir, sinArchivadas, textoContador, type Nota } from "./notas";
 
 describe("resumir", () => {
   it("deja intacto un texto corto", () => {
@@ -61,5 +61,19 @@ describe("sinArchivadas", () => {
 
     expect(resultado).not.toBe(notas);
     expect(notas).toEqual(originales);
+  });
+});
+
+describe("textoContador", () => {
+  it("usa el plural para cero", () => {
+    expect(textoContador(0)).toBe("0 notas");
+  });
+
+  it("usa el singular para una nota", () => {
+    expect(textoContador(1)).toBe("1 nota");
+  });
+
+  it("usa el plural para varias notas", () => {
+    expect(textoContador(5)).toBe("5 notas");
   });
 });
