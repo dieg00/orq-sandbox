@@ -5,13 +5,13 @@ import Home from "./page";
 describe("página de inicio", () => {
   afterEach(cleanup);
 
-  it("muestra las notas sin archivar, la más antigua primero", () => {
+  it("muestra las notas sin archivar, con las fijadas primero", () => {
     render(<Home />);
     expect(screen.getByRole("heading", { name: "Notas" })).toBeDefined();
     expect(screen.getByRole("button", { name: "Tema oscuro" })).toBeDefined();
     const elementos = screen.getAllByRole("listitem");
     const items = elementos.map((li) => li.querySelector("span")?.textContent);
-    expect(items).toEqual(["Primera nota del sandbox", "Repo de testeo del orquestador"]);
+    expect(items).toEqual(["Repo de testeo del orquestador", "Primera nota del sandbox"]);
     elementos.forEach((li) => {
       expect(within(li).getAllByRole("button").length).toBe(1);
     });
