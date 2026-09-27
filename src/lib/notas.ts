@@ -3,6 +3,7 @@ export type Nota = {
   titulo: string;
   creadaEn: string;
   archivada: boolean;
+  fijada: boolean;
 };
 
 export type OrdenFecha = "descendente" | "ascendente";

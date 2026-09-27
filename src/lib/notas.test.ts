@@ -15,15 +15,15 @@ describe("resumir", () => {
 
 describe("ordenarPorFecha", () => {
   const notas: Nota[] = [
-    { id: 2, titulo: "intermedia", creadaEn: "2026-03-01T00:00:00Z", archivada: false },
-    { id: 3, titulo: "nueva", creadaEn: "2026-06-01T00:00:00Z", archivada: false },
-    { id: 1, titulo: "vieja", creadaEn: "2026-01-01T00:00:00Z", archivada: false },
+    { id: 2, titulo: "intermedia", creadaEn: "2026-03-01T00:00:00Z", archivada: false, fijada: false },
+    { id: 3, titulo: "nueva", creadaEn: "2026-06-01T00:00:00Z", archivada: false, fijada: false },
+    { id: 1, titulo: "vieja", creadaEn: "2026-01-01T00:00:00Z", archivada: false, fijada: false },
   ];
 
   it("pone primero la nota más reciente sin mutar la entrada", () => {
     const notasPorDefecto: Nota[] = [
-      { id: 1, titulo: "vieja", creadaEn: "2026-01-01T00:00:00Z", archivada: false },
-      { id: 2, titulo: "nueva", creadaEn: "2026-06-01T00:00:00Z", archivada: false },
+      { id: 1, titulo: "vieja", creadaEn: "2026-01-01T00:00:00Z", archivada: false, fijada: false },
+      { id: 2, titulo: "nueva", creadaEn: "2026-06-01T00:00:00Z", archivada: false, fijada: false },
     ];
     expect(ordenarPorFecha(notasPorDefecto).map((n) => n.id)).toEqual([2, 1]);
     expect(notasPorDefecto[0]?.id).toBe(1);
@@ -42,9 +42,9 @@ describe("ordenarPorFecha", () => {
 describe("sinArchivadas", () => {
   it("excluye las archivadas y conserva el orden de las demás", () => {
     const notas: Nota[] = [
-      { id: 1, titulo: "primera", creadaEn: "2026-01-01T00:00:00Z", archivada: false },
-      { id: 2, titulo: "archivada", creadaEn: "2026-02-01T00:00:00Z", archivada: true },
-      { id: 3, titulo: "última", creadaEn: "2026-03-01T00:00:00Z", archivada: false },
+      { id: 1, titulo: "primera", creadaEn: "2026-01-01T00:00:00Z", archivada: false, fijada: false },
+      { id: 2, titulo: "archivada", creadaEn: "2026-02-01T00:00:00Z", archivada: true, fijada: false },
+      { id: 3, titulo: "última", creadaEn: "2026-03-01T00:00:00Z", archivada: false, fijada: false },
     ];
 
     expect(sinArchivadas(notas).map((nota) => nota.id)).toEqual([1, 3]);
@@ -52,8 +52,8 @@ describe("sinArchivadas", () => {
 
   it("devuelve un array nuevo sin mutar la entrada", () => {
     const notas: Nota[] = [
-      { id: 1, titulo: "primera", creadaEn: "2026-01-01T00:00:00Z", archivada: false },
-      { id: 2, titulo: "archivada", creadaEn: "2026-02-01T00:00:00Z", archivada: true },
+      { id: 1, titulo: "primera", creadaEn: "2026-01-01T00:00:00Z", archivada: false, fijada: false },
+      { id: 2, titulo: "archivada", creadaEn: "2026-02-01T00:00:00Z", archivada: true, fijada: false },
     ];
     const originales = [...notas];
 
