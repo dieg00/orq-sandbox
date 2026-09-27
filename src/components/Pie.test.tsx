@@ -8,12 +8,12 @@ describe("Pie", () => {
     cleanup();
   });
 
-  it("muestra el año actual", () => {
+  it("muestra el año actual y la versión", () => {
     vi.useFakeTimers({ toFake: ["Date"] });
     vi.setSystemTime(new Date("2031-06-15T12:00:00Z"));
 
     render(<Pie />);
 
-    expect(screen.getByRole("contentinfo").textContent).toBe("orq-sandbox · 2031");
+    expect(screen.getByRole("contentinfo").textContent).toBe("orq-sandbox · 2031 · v0.1.0");
   });
 });
