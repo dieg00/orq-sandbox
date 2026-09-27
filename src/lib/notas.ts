@@ -2,6 +2,7 @@ export type Nota = {
   id: number;
   titulo: string;
   creadaEn: string;
+  actualizadaEn: string;
   archivada: boolean;
   fijada: boolean;
 };
