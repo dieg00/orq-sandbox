@@ -1,4 +1,5 @@
 import { Cabecera } from "@/components/Cabecera";
+import { BotonCopiar } from "@/components/BotonCopiar";
 import { ordenarPorFecha, resumir, sinArchivadas, type Nota } from "@/lib/notas";
 
 const notasDeEjemplo: Nota[] = [
@@ -15,7 +16,10 @@ export default function Home() {
         <h1 className="text-2xl font-semibold">Notas</h1>
         <ul className="mt-6 space-y-2">
           {ordenarPorFecha(sinArchivadas(notasDeEjemplo), "ascendente").map((nota) => (
-            <li key={nota.id}>{resumir(nota.titulo)}</li>
+            <li key={nota.id} className="flex items-center justify-between gap-2">
+              <span>{resumir(nota.titulo)}</span>
+              <BotonCopiar texto={nota.titulo} />
+            </li>
           ))}
         </ul>
       </main>
