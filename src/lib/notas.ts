@@ -23,7 +23,10 @@ export function ordenarPorFecha(notas: readonly Nota[], orden: OrdenFecha = "des
   );
 }
 
-/** Conserva el orden de cada grupo para componerse después de ordenarPorFecha. */
+/**
+ * Pone primero las notas fijadas y después el resto, conservando el orden de entrada
+ * dentro de cada grupo. Se compone después de `ordenarPorFecha`.
+ */
 export function fijadasPrimero(notas: readonly Nota[]): Nota[] {
   return [...notas.filter((nota) => nota.fijada), ...notas.filter((nota) => !nota.fijada)];
 }
