@@ -58,3 +58,4 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - jest-dom no está instalado: las aserciones se escriben con `toBeDefined()` y `toBe()`, no con `toBeInTheDocument()`.
 - Cualquier página que incluya `<Cabecera />` repite los textos de la navegación. Las consultas del test deben ir por rol (`heading`, `link`) y no por `getByText`, que encontraría varias coincidencias.
 - `pnpm build` (Turbopack) puede fallar dentro del sandbox del hacedor con `Operation not permitted`, porque intenta abrir un puerto al procesar `globals.css`. Es una limitación del entorno, no un fallo del código: el build hay que verificarlo fuera del sandbox.
+- Dentro del sandbox del hacedor, `supabase migration new` falla con EPERM porque intenta escribir telemetría en `~/.supabase`. Se puede crear el archivo a mano con el formato `supabase/migrations/<YYYYMMDDHHMMSS>_<nombre>.sql`, con un timestamp posterior al de la última migración.
