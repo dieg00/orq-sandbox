@@ -5,14 +5,20 @@ export type Nota = {
   archivada: boolean;
 };
 
+export type OrdenFecha = "descendente" | "ascendente";
+
 export function resumir(texto: string, max = 40): string {
   const limpio = texto.trim().replace(/\s+/g, " ");
   if (limpio.length <= max) return limpio;
   return `${limpio.slice(0, max - 1).trimEnd()}…`;
 }
 
-export function ordenarPorFecha(notas: readonly Nota[]): Nota[] {
-  return [...notas].sort((a, b) => b.creadaEn.localeCompare(a.creadaEn));
+export function ordenarPorFecha(notas: readonly Nota[], orden: OrdenFecha = "descendente"): Nota[] {
+  return [...notas].sort((a, b) =>
+    orden === "descendente"
+      ? b.creadaEn.localeCompare(a.creadaEn)
+      : a.creadaEn.localeCompare(b.creadaEn),
+  );
 }
 
 export function sinArchivadas(notas: readonly Nota[]): Nota[] {
