@@ -2,6 +2,7 @@ export type Nota = {
   id: number;
   titulo: string;
   creadaEn: string;
+  archivada: boolean;
 };
 
 export function resumir(texto: string, max = 40): string {
@@ -12,4 +13,8 @@ export function resumir(texto: string, max = 40): string {
 
 export function ordenarPorFecha(notas: readonly Nota[]): Nota[] {
   return [...notas].sort((a, b) => b.creadaEn.localeCompare(a.creadaEn));
+}
+
+export function sinArchivadas(notas: readonly Nota[]): Nota[] {
+  return notas.filter((nota) => !nota.archivada);
 }
