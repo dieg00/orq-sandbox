@@ -23,6 +23,11 @@ export function ordenarPorFecha(notas: readonly Nota[], orden: OrdenFecha = "des
   );
 }
 
+/** Conserva el orden de cada grupo para componerse después de ordenarPorFecha. */
+export function fijadasPrimero(notas: readonly Nota[]): Nota[] {
+  return [...notas.filter((nota) => nota.fijada), ...notas.filter((nota) => !nota.fijada)];
+}
+
 export function sinArchivadas(notas: readonly Nota[]): Nota[] {
   return notas.filter((nota) => !nota.archivada);
 }

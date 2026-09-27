@@ -1,6 +1,6 @@
 import { Cabecera } from "@/components/Cabecera";
 import { BotonCopiar } from "@/components/BotonCopiar";
-import { ordenarPorFecha, resumir, sinArchivadas, textoContador, type Nota } from "@/lib/notas";
+import { fijadasPrimero, ordenarPorFecha, resumir, sinArchivadas, textoContador, type Nota } from "@/lib/notas";
 
 const notasDeEjemplo: Nota[] = [
   { id: 1, titulo: "Primera nota del sandbox", creadaEn: "2026-09-01T10:00:00Z", actualizadaEn: "2026-09-01T10:00:00Z", archivada: false, fijada: false },
@@ -9,7 +9,7 @@ const notasDeEjemplo: Nota[] = [
 ];
 
 export default function Home() {
-  const notas = ordenarPorFecha(sinArchivadas(notasDeEjemplo), "ascendente");
+  const notas = fijadasPrimero(ordenarPorFecha(sinArchivadas(notasDeEjemplo), "ascendente"));
 
   return (
     <>
