@@ -22,4 +22,21 @@ describe("Cabecera", () => {
     ).getAllByRole("link");
     expect(enlacesNavegacion.at(-1)?.textContent).toBe("GitHub");
   });
+
+  it("muestra el nombre del sitio antes de la navegación", () => {
+    render(<Cabecera />);
+
+    const enlace = screen.getByRole("link", { name: "orq-sandbox" });
+    const cabecera = screen.getByRole("banner");
+    const navegacion = screen.getByRole("navigation");
+
+    expect(enlace.getAttribute("href")).toBe("/");
+    expect(enlace.classList.contains("font-bold")).toBe(true);
+    expect(cabecera.classList.contains("flex")).toBe(true);
+    expect(cabecera.classList.contains("justify-between")).toBe(true);
+    expect(navegacion.contains(enlace)).toBe(false);
+    expect(Boolean(enlace.compareDocumentPosition(navegacion) & Node.DOCUMENT_POSITION_FOLLOWING)).toBe(true);
+    expect(within(navegacion).getByRole("link", { name: "Inicio" })).toBeDefined();
+    expect(within(navegacion).getByRole("link", { name: "Acerca de" })).toBeDefined();
+  });
 });
