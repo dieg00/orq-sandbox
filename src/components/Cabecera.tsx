@@ -4,7 +4,8 @@ const enlaces = [{ href: "/", texto: "Inicio" }, { href: "/about", texto: "Acerc
 
 export function Cabecera() {
   return (
-    <header className="border-b border-zinc-200 px-6 py-4">
+    <header className="flex items-center justify-between border-b border-zinc-200 px-6 py-4">
+      <Link href="/" className="font-bold">orq-sandbox</Link>
       <nav className="flex gap-4 text-sm font-medium">
         {enlaces.map((enlace) => (
           <Link key={enlace.href} href={enlace.href}>
