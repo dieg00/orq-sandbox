@@ -63,3 +63,5 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - Para probar componentes que dependen de la fecha, usa `vi.useFakeTimers({ toFake: ['Date'] })` + `vi.setSystemTime(...)` y restaura con `vi.useRealTimers()` en `afterEach`. Con `toFake: ['Date']` solo se falsea `Date` y no se bloquean `setTimeout` ni las promesas de Testing Library.
 - Sin `cacheComponents` en `next.config.ts`, un componente de servidor puede usar `new Date()`: la página se sigue prerenderizando como estática y el valor queda fijado en el momento del build.
 - Para comprobar el HTML prerenderizado, busca en `.next/server/app/<ruta>.html`. React inserta `<!-- -->` entre un texto y una expresión JSX contiguos, así que no hay que buscar la cadena completa de golpe.
+- Los enlaces externos de la cabecera se escriben como `<a>` normal con `target="_blank" rel="noopener noreferrer"`, después del `enlaces.map(...)`. La lista `enlaces` y `next/link` son solo para rutas internas.
+- Para comprobar el orden de la navegación en un test, usa `within(screen.getByRole("navigation")).getAllByRole("link")` y mira el primer o el último elemento.
