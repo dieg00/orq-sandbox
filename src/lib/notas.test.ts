@@ -41,10 +41,10 @@ describe("ordenarPorFecha", () => {
 
 describe("fijadasPrimero", () => {
   const notas: Nota[] = [
-    { id: 1, titulo: "primera", creadaEn: "2026-01-01T00:00:00Z", archivada: false, fijada: false },
-    { id: 2, titulo: "segunda", creadaEn: "2026-02-01T00:00:00Z", archivada: false, fijada: true },
-    { id: 3, titulo: "tercera", creadaEn: "2026-03-01T00:00:00Z", archivada: false, fijada: false },
-    { id: 4, titulo: "cuarta", creadaEn: "2026-04-01T00:00:00Z", archivada: false, fijada: true },
+    { id: 1, titulo: "primera", creadaEn: "2026-01-01T00:00:00Z", actualizadaEn: "2026-01-01T00:00:00Z", archivada: false, fijada: false },
+    { id: 2, titulo: "segunda", creadaEn: "2026-02-01T00:00:00Z", actualizadaEn: "2026-02-01T00:00:00Z", archivada: false, fijada: true },
+    { id: 3, titulo: "tercera", creadaEn: "2026-03-01T00:00:00Z", actualizadaEn: "2026-03-01T00:00:00Z", archivada: false, fijada: false },
+    { id: 4, titulo: "cuarta", creadaEn: "2026-04-01T00:00:00Z", actualizadaEn: "2026-04-01T00:00:00Z", archivada: false, fijada: true },
   ];
 
   it("pone las fijadas primero y conserva el orden relativo de ambos grupos", () => {
@@ -61,9 +61,9 @@ describe("fijadasPrimero", () => {
 
   it("conserva el orden si no hay notas fijadas", () => {
     const sinFijadas: Nota[] = [
-      { id: 3, titulo: "tercera", creadaEn: "2026-03-01T00:00:00Z", archivada: false, fijada: false },
-      { id: 1, titulo: "primera", creadaEn: "2026-01-01T00:00:00Z", archivada: false, fijada: false },
-      { id: 2, titulo: "segunda", creadaEn: "2026-02-01T00:00:00Z", archivada: false, fijada: false },
+      { id: 3, titulo: "tercera", creadaEn: "2026-03-01T00:00:00Z", actualizadaEn: "2026-03-01T00:00:00Z", archivada: false, fijada: false },
+      { id: 1, titulo: "primera", creadaEn: "2026-01-01T00:00:00Z", actualizadaEn: "2026-01-01T00:00:00Z", archivada: false, fijada: false },
+      { id: 2, titulo: "segunda", creadaEn: "2026-02-01T00:00:00Z", actualizadaEn: "2026-02-01T00:00:00Z", archivada: false, fijada: false },
     ];
 
     expect(fijadasPrimero(sinFijadas).map((nota) => nota.id)).toEqual([3, 1, 2]);
@@ -71,10 +71,10 @@ describe("fijadasPrimero", () => {
 
   it("mantiene cada grupo ordenado por fecha ascendente al componerse", () => {
     const entrada: Nota[] = [
-      { id: 2, titulo: "segunda", creadaEn: "2026-02-01T00:00:00Z", archivada: false, fijada: false },
-      { id: 3, titulo: "tercera", creadaEn: "2026-03-01T00:00:00Z", archivada: false, fijada: true },
-      { id: 1, titulo: "primera", creadaEn: "2026-01-01T00:00:00Z", archivada: false, fijada: true },
-      { id: 4, titulo: "cuarta", creadaEn: "2026-04-01T00:00:00Z", archivada: false, fijada: false },
+      { id: 2, titulo: "segunda", creadaEn: "2026-02-01T00:00:00Z", actualizadaEn: "2026-02-01T00:00:00Z", archivada: false, fijada: false },
+      { id: 3, titulo: "tercera", creadaEn: "2026-03-01T00:00:00Z", actualizadaEn: "2026-03-01T00:00:00Z", archivada: false, fijada: true },
+      { id: 1, titulo: "primera", creadaEn: "2026-01-01T00:00:00Z", actualizadaEn: "2026-01-01T00:00:00Z", archivada: false, fijada: true },
+      { id: 4, titulo: "cuarta", creadaEn: "2026-04-01T00:00:00Z", actualizadaEn: "2026-04-01T00:00:00Z", archivada: false, fijada: false },
     ];
 
     expect(fijadasPrimero(ordenarPorFecha(entrada, "ascendente")).map((nota) => nota.id)).toEqual([1, 3, 2, 4]);
