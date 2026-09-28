@@ -1,4 +1,5 @@
 import { Cabecera } from "@/components/Cabecera";
+import { VolverInicio } from "@/components/VolverInicio";
 
 export default function AcercaDe() {
   return (
@@ -9,6 +10,7 @@ export default function AcercaDe() {
         <p className="mt-4">
           Esta app es el repo de testeo del orquestador (La Comparsa): una app mínima de notas para ejercitar el ciclo completo de plan, ejecución, revisión y merge.
         </p>
+        <VolverInicio />
       </main>
     </>
   );

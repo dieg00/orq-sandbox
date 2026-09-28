@@ -8,5 +8,8 @@ describe("página acerca de", () => {
     expect(screen.getByRole("heading", { level: 1, name: "Acerca de" })).toBeDefined();
     expect(screen.getByText(/repo de testeo del orquestador/i)).toBeDefined();
     expect(screen.getByRole("link", { name: "Acerca de" }).getAttribute("href")).toBe("/about");
+    const volver = screen.getByRole("link", { name: "Volver al inicio" });
+    expect(volver.getAttribute("href")).toBe("/");
+    expect(screen.getByText(/repo de testeo del orquestador/i).compareDocumentPosition(volver) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
   });
 });
