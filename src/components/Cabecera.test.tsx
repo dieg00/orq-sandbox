@@ -23,6 +23,13 @@ describe("Cabecera", () => {
     expect(enlacesNavegacion.at(-1)?.textContent).toBe("GitHub");
   });
 
+  it("enlaza a la página de estado desde la navegación", () => {
+    render(<Cabecera />);
+
+    const navegacion = screen.getByRole("navigation");
+    expect(within(navegacion).getByRole("link", { name: "Estado" }).getAttribute("href")).toBe("/estado");
+  });
+
   it("muestra el nombre del sitio antes de la navegación", () => {
     render(<Cabecera />);
 

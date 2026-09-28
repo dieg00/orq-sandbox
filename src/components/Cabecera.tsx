@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { SelectorTema } from "./SelectorTema";
 
-const enlaces = [{ href: "/", texto: "Inicio" }, { href: "/about", texto: "Acerca de" }];
+const enlaces = [{ href: "/", texto: "Inicio" }, { href: "/about", texto: "Acerca de" }, { href: "/estado", texto: "Estado" }];
 
 export function Cabecera() {
   return (
