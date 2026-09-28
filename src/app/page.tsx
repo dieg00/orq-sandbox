@@ -1,5 +1,6 @@
 import { Cabecera } from "@/components/Cabecera";
 import { BotonCopiar } from "@/components/BotonCopiar";
+import { Banner } from "@/components/Banner";
 import { fijadasPrimero, ordenarPorFecha, resumir, sinArchivadas, textoContador, type Nota } from "@/lib/notas";
 
 const notasDeEjemplo: Nota[] = [
@@ -15,6 +16,7 @@ export default function Home() {
     <>
       <Cabecera />
       <main className="mx-auto max-w-2xl px-6 py-12">
+        <Banner />
         <h1 className="text-2xl font-semibold">Notas</h1>
         <p id="contador-notas" className="mt-2 text-sm opacity-70">
           {textoContador(notas.length)}
