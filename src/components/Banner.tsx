@@ -5,5 +5,5 @@ export function Banner() {
     return null;
   }
 
-  return <aside aria-label="Aviso" className="mt-4 rounded border border-borde px-4 py-2 text-sm">{texto}</aside>;
+  return <aside aria-label="Aviso" className="mb-6 rounded border border-borde px-4 py-2 text-sm">{texto}</aside>;
 }
