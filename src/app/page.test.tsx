@@ -1,9 +1,12 @@
 import { cleanup, render, screen, within } from "@testing-library/react";
-import { afterEach, describe, expect, it } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
 import Home from "./page";
 
 describe("página de inicio", () => {
-  afterEach(cleanup);
+  afterEach(() => {
+    vi.unstubAllEnvs();
+    cleanup();
+  });
 
   it("muestra las notas sin archivar, con las fijadas primero", () => {
     render(<Home />);
@@ -30,5 +33,14 @@ describe("página de inicio", () => {
     expect(lista.getAttribute("aria-describedby")).toBe(contador.id);
     expect(contador.id).toBe("contador-notas");
     expect(within(lista).getAllByRole("listitem").length).toBe(2);
+  });
+
+  it("muestra el banner antes del título de la portada", () => {
+    vi.stubEnv("NEXT_PUBLIC_BANNER_TEXT", "Aviso de prueba");
+    render(<Home />);
+    const banner = screen.getByRole("complementary", { name: "Aviso" });
+    const titulo = screen.getByRole("heading", { name: "Notas" });
+    expect(banner.textContent).toBe("Aviso de prueba");
+    expect(banner.compareDocumentPosition(titulo) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
   });
 });
