@@ -4,7 +4,7 @@ import { scriptTema } from "@/lib/tema";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "orq-sandbox",
+  title: { default: "orq-sandbox", template: "%s · orq-sandbox" },
   description: "Repo de testeo del orquestador",
 };
 
