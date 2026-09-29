@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { fijadasPrimero, ordenarPorFecha, resumir, sinArchivadas, textoContador, type Nota } from "./notas";
+import { buscarNota, fijadasPrimero, ordenarPorFecha, resumir, sinArchivadas, textoContador, type Nota } from "./notas";
 
 describe("resumir", () => {
   it("deja intacto un texto corto", () => {
@@ -103,6 +103,26 @@ describe("sinArchivadas", () => {
 
     expect(resultado).not.toBe(notas);
     expect(notas).toEqual(originales);
+  });
+});
+
+describe("buscarNota", () => {
+  const notas: Nota[] = [
+    { id: 3, titulo: "tercera", creadaEn: "2026-03-01T00:00:00Z", actualizadaEn: "2026-03-01T00:00:00Z", archivada: true, fijada: false },
+    { id: 1, titulo: "primera", creadaEn: "2026-01-01T00:00:00Z", actualizadaEn: "2026-01-01T00:00:00Z", archivada: false, fijada: false },
+    { id: 2, titulo: "segunda", creadaEn: "2026-02-01T00:00:00Z", actualizadaEn: "2026-02-01T00:00:00Z", archivada: false, fijada: true },
+  ];
+
+  it("encuentra la nota por id aunque los ids estén desordenados", () => {
+    expect(buscarNota(notas, "2")).toBe(notas[2]);
+  });
+
+  it("devuelve undefined para un id inexistente", () => {
+    expect(buscarNota(notas, "99")).toBeUndefined();
+  });
+
+  it.each(["0", "01", "1.0", " 1", "abc", "", "-1"])("rechaza el id mal formado %j", (id) => {
+    expect(buscarNota(notas, id)).toBeUndefined();
   });
 });
 

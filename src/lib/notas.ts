@@ -35,6 +35,13 @@ export function sinArchivadas(notas: readonly Nota[]): Nota[] {
   return notas.filter((nota) => !nota.archivada);
 }
 
+/** Busca una nota por su id decimal positivo, sin ceros a la izquierda. */
+export function buscarNota(notas: readonly Nota[], id: string): Nota | undefined {
+  if (!/^[1-9]\d*$/.test(id)) return undefined;
+  const numero = Number(id);
+  return notas.find((nota) => nota.id === numero);
+}
+
 export function textoContador(cantidad: number): string {
   return cantidad === 1 ? "1 nota" : `${cantidad} notas`;
 }

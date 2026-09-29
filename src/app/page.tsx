@@ -1,13 +1,9 @@
+import Link from "next/link";
 import { Cabecera } from "@/components/Cabecera";
 import { BotonCopiar } from "@/components/BotonCopiar";
 import { Banner } from "@/components/Banner";
-import { fijadasPrimero, ordenarPorFecha, resumir, sinArchivadas, textoContador, type Nota } from "@/lib/notas";
-
-const notasDeEjemplo: Nota[] = [
-  { id: 1, titulo: "Primera nota del sandbox", creadaEn: "2026-09-01T10:00:00Z", actualizadaEn: "2026-09-01T10:00:00Z", archivada: false, fijada: false },
-  { id: 2, titulo: "Repo de testeo del orquestador", creadaEn: "2026-09-20T10:00:00Z", actualizadaEn: "2026-09-20T10:00:00Z", archivada: false, fijada: true },
-  { id: 3, titulo: "Nota archivada de ejemplo", creadaEn: "2026-09-25T10:00:00Z", actualizadaEn: "2026-09-25T10:00:00Z", archivada: true, fijada: false },
-];
+import { notasDeEjemplo } from "@/lib/datos";
+import { fijadasPrimero, ordenarPorFecha, resumir, sinArchivadas, textoContador } from "@/lib/notas";
 
 export default function Home() {
   const notas = fijadasPrimero(ordenarPorFecha(sinArchivadas(notasDeEjemplo), "ascendente"));
@@ -24,7 +20,7 @@ export default function Home() {
         <ul aria-describedby="contador-notas" className="mt-6 space-y-2">
           {notas.map((nota) => (
             <li key={nota.id} className="flex items-center justify-between gap-2">
-              <span>{resumir(nota.titulo)}</span>
+              <span><Link href={`/notas/${nota.id}`} className="underline">{resumir(nota.titulo)}</Link></span>
               <BotonCopiar texto={nota.titulo} />
             </li>
           ))}

@@ -35,6 +35,13 @@ describe("página de inicio", () => {
     expect(within(lista).getAllByRole("listitem").length).toBe(2);
   });
 
+  it("enlaza los títulos visibles a sus detalles", () => {
+    render(<Home />);
+    expect(screen.getByRole("link", { name: "Primera nota del sandbox" }).getAttribute("href")).toBe("/notas/1");
+    expect(screen.getByRole("link", { name: "Repo de testeo del orquestador" }).getAttribute("href")).toBe("/notas/2");
+    expect(screen.queryByRole("link", { name: "Nota archivada de ejemplo" })).toBeNull();
+  });
+
   it("muestra el banner antes del título de la portada", () => {
     vi.stubEnv("NEXT_PUBLIC_BANNER_TEXT", "Aviso de prueba");
     render(<Home />);
